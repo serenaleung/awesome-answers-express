@@ -9,7 +9,7 @@ const questions = Array
   .from({length: 100})
   .map(function () {
     return Question.create({
-      title: `${faker.hacker.adjective} ${faker.hacker.noun()}`,
+      title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
       description: faker.hacker.phrase()
     })
 })
