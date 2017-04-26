@@ -5,4 +5,13 @@
 <p><%= question.description %></p>
 <p><strong>Create At: </strong><%= question.createdAt %></p>
 
+<h2>Answers</h2>
+
+<form action="/questions/<%= question.id %>/answers" method="post">
+  <div>
+    <textarea id="content" name="content"></textarea>
+  </div>
+  <input type="submit" name="submit" value="Submit"/>
+</form>
+
 <%- include('../partials/footer') %>
