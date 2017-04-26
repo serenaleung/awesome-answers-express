@@ -45,6 +45,16 @@ router.post('/', function (req, res) {
  })
 })
 
+// Questions#destroy URL: /questions/:id VERB: DELETE
+router.delete('/:id', function (req, res) {
+  const id = req.params.id;
+
+  Question
+    .findById(id)
+    .then(function (question) {return question.destroy()})
+    .then(function() {res.redirect('/questions')});
+})
+
 // Questions#show URL: /questions/:id VERB: GET
 // For a url `/questions/99`, the req.params object will be equal to {id: '99'}
 router.get('/:id', function (req, res) {

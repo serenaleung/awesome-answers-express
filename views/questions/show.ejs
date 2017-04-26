@@ -5,6 +5,11 @@
 <p><%= question.description %></p>
 <p><strong>Create At: </strong><%= question.createdAt %></p>
 
+<form action="/questions/<%= question.id %>" method="post">
+  <input type="hidden" name="_method" value="delete"/>
+  <input type="submit" value="Delete"/>
+</form>
+
 <h2>Answers</h2>
 
 <form action="/questions/<%= question.id %>/answers" method="post">
