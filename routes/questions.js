@@ -45,15 +45,25 @@ router.post('/', function (req, res) {
  })
 })
 
+// Questions#show URL: /questions/:id VERB: GET
+// For a url `/questions/99`, the req.params object will be equal to {id: '99'}
 router.get('/:id', function (req, res) {
   const id = req.params.id;
 
-
   Question
-  .findById(id)
-  .then(function (question){
-    res.render('questions/show', {question: question})
-  });
+    .findById(id)
+    .then(function (question) {
+      return Promise.all([question,
+        question.getAnswers({order: [['createdAt', 'DESC']]})])
+    })
+    // NEW! Array Destructuring
+    // const [first, second, ...rest] = [1, 2, 3, 4, 5, 6]
+    // first === 1; second === 2, rest === [3, 4, 5. 6]
+    // can also be done with function arguments
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+    .then(function ([question, answers]) {
+      res.render('questions/show', {question: question, answers: answers})
+    })
 })
 
 // URL: /questions/:questionId/answers VERB: All of them!

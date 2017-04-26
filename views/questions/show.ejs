@@ -14,4 +14,13 @@
   <input type="submit" name="submit" value="Submit"/>
 </form>
 
+<ul class="answers-list">
+  <% for (let answer of answers) { %>
+    <li>
+      <p><%= answer.content %></p>
+      <p><strong>Created At: <%= answer.createdAt %></strong></p>
+    </li>
+  <% } %>
+</ul>
+
 <%- include('../partials/footer') %>
