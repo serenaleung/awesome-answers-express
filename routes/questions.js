@@ -20,4 +20,15 @@ router.get('/', function (request, response, next){
   // All Sequelize query methods return a promise
 })
 
+router.get('/:id', function (req, res) {
+  const id = req.params.id;
+
+
+  Question
+  .findById(id)
+  .then(function (question){
+    res.render('questions/show', {question: question})
+  });
+})
+
 module.exports = router;
