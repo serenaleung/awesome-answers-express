@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // form data, make sure that it's used after the body Parser mdidleware
 app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
+    // look in url encoded POST bodies and delete it
     var method = req.body._method // grabs HTTP VERB from form-data with name _method
     delete req.body._method // deletes _method from req.body
     return method // methodOverride will set it as the method for the request
